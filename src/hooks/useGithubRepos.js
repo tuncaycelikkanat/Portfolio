@@ -7,7 +7,7 @@ export function useGithubRepos() {
   useEffect(() => {
     try {
       const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null')
-      if (cached && Date.now() - cached.ts < 3600 * 1000) { setRepos(cached.data); return }
+      if (cached && Date.now() - cached.ts < 3600 * 1000 && Array.isArray(cached.data)) { setRepos(cached.data); return }
     } catch {}
     fetch('https://api.github.com/users/tuncaycelikkanat/repos?per_page=100&sort=updated')
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))

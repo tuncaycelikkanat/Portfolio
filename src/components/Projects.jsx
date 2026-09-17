@@ -10,7 +10,7 @@ export default function Projects() {
           <article key={r.name} className="border border-zinc-800 rounded p-4">
             <h3 className="font-semibold">{r.name}</h3>
             <p className="text-sm text-zinc-400 mt-1">{r.description}</p>
-            <p className="text-xs mt-2">{r.language}{r.stars != null ? ` • ★ ${r.stars}` : ''}</p>
+            <p className="text-xs mt-2">{r.language}{r.stars != null ? ` • ★ ${r.stars}` : ''}{r.updated ? ` • Güncellendi: ${new Date(r.updated).toLocaleDateString('tr-TR')}` : ''}</p>
             <div className="mt-3 flex gap-3 text-sm">
               <a href={r.url} className="underline">GitHub</a>
               {r.demo ? <a href={r.demo} className="underline">Canlı Demo</a> : null}

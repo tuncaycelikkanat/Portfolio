@@ -1,9 +1,15 @@
 // src/components/Hero.jsx
+import { useState } from 'react'
 import { PROFILE } from '../data/profile.js'
 export default function Hero() {
+  const [imgOk, setImgOk] = useState(true)
   return (
     <header id="top" className="pt-24 pb-12 max-w-5xl mx-auto px-4 flex gap-6 items-center">
-      <img src={PROFILE.avatar} alt={PROFILE.name} className="w-24 h-24 rounded-full" onError={(e) => { e.currentTarget.style.display = 'none' }} />
+      {imgOk ? (
+        <img src={PROFILE.avatar} alt={PROFILE.name} className="w-24 h-24 rounded-full" onError={() => setImgOk(false)} />
+      ) : (
+        <div className="w-24 h-24 rounded-full bg-zinc-700 flex items-center justify-center text-xl font-bold shrink-0" aria-label={PROFILE.name}>TÇ</div>
+      )}
       <div>
         <h1 className="text-3xl font-bold">{PROFILE.name}</h1>
         <p className="text-zinc-400">{PROFILE.title} — {PROFILE.university}, {PROFILE.location}</p>
